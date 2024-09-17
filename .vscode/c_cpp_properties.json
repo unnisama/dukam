@@ -1,0 +1,22 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "/usr/include/libxml++-5.0",
+                "/usr/lib/libxml++-5.0/include",
+                "/usr/include/libxml2",
+                "${workspaceFolder}/libraries/include"
+            ],
+            "defines": [
+                "__clang__=1",
+                "__building_module(x)=0"
+            ],
+            "compilerPath": "/usr/bin/clang",
+            "intelliSenseMode": "linux-clang-x64",
+            "cStandard": "c11",
+            "cppStandard": "c++17"
+        }
+    ],
+    "version": 4
+}
