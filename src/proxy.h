@@ -11,7 +11,7 @@ public:
     ProxyManager(std::string f);
     ProxyManager();
     std::string GetProxy();
-    void RemoveProxy(std::string& proxy);
+    void RemoveProxy(const std::string& proxy);
     void RemoveProxy(int pxid);
     int GetProxyType(std::string proxy);
     std::string GetIP(std::string& proxy);

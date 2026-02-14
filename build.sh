@@ -9,6 +9,8 @@ LIBBASE64LIBS="-Llibraries/lib -lbase64 -Ilibraries/include"
 FILESC="src/main.cpp src/proxy.cpp src/city.cpp"
 
 clang++ $ROCKSDBCFLAGS $OPENSSLLIBS $LIBCURLCLIBS $ROCKSDBLIBS $INCLUDEFLAGS $LIBXML2FLAGS $@ $FILESC $LIBBASE64LIBS -o main
+clang++ tools/main.cpp $ROCKSDBCFLAGS $ROCKSDBLIBS $INCLUDEFLAGS $LIBBASE64LIBS -o tools/main
+
 
 # if [ $? == 0 ]; then
 #     ./main

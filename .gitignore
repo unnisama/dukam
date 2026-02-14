@@ -1,4 +1,4 @@
 main
 out.txt
-data/**
-libraries/**
+data
+libraries

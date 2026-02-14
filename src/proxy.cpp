@@ -21,30 +21,53 @@ ProxyManager::ProxyManager()
 {
 }
 
-void ProxyManager::RemoveProxy(std::string& proxy)
+void ProxyManager::RemoveProxy(const std::string& proxy)
 {
-    int cidx = 0;
-    for(std::string p : proxies){
-        if(p == proxy){
-            break;
-        }
-        idx += 1;
-    }
-    if(idx > cidx){
-        idx -= 1;
+    auto it = std::find(proxies.begin(), proxies.end(), proxy);
+
+    if (it == proxies.end()) {
+        return; // proxy not found
     }
 
-    proxies.erase(proxies.begin()+cidx);
+    size_t removeIndex = std::distance(proxies.begin(), it);
+
+    // Adjust idx if needed
+    if (idx > removeIndex) {
+        idx--;
+    } else if (idx >= proxies.size() - 1 && !proxies.empty()) {
+        idx = 0;
+    }
+
+    proxies.erase(it);
+
+    // If container becomes empty, reset idx
+    if (proxies.empty()) {
+        idx = 0;
+    } else {
+        idx %= proxies.size();
+    }
 }
+
 
 void ProxyManager::RemoveProxy(int pxid)
 {
-    if(idx > pxid){
-        idx -= 1;
+    if (pxid < 0 || pxid >= proxies.size()) {
+        return; // invalid index
     }
 
-    proxies.erase(proxies.begin()+pxid);
+    if (idx > pxid) {
+        idx--;
+    }
+
+    proxies.erase(proxies.begin() + pxid);
+
+    if (proxies.empty()) {
+        idx = 0;
+    } else {
+        idx %= proxies.size();
+    }
 }
+
 
 int ProxyManager::GetProxyType(std::string prox){
     std::string proxy(prox.data());
